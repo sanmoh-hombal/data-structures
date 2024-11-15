@@ -1,5 +1,6 @@
 package org.sanmoh.Arrays;
 
+import java.util.Objects;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,5 +34,21 @@ public class LargestElementInAnArray {
     for (Integer integer : array) if (integer > largest) largest = integer;
     // Return the largest element
     return largest;
+  }
+
+  /**
+   * Finds the largest element in the given array using a recursive approach.
+   *
+   * @param array the array of integers in which the largest element is to be found
+   * @param index the current index in the array being processed
+   * @return the largest element in the provided array from the current index onwards
+   */
+  public static Integer Recursive(Integer @NotNull [] array, @NotNull Integer index) {
+    // Base case: if the index is the last element of the array, return the element
+    if (Objects.equals(array[index], array[array.length - 1])) return array[index];
+    // Recursive case: return the maximum of current element and the maximum of rest of the array
+    Integer recursionMaximum = Recursive(array, index + 1);
+    // Return the maximum of the current element and the maximum of the rest of the array
+    return Math.max(recursionMaximum, array[index]);
   }
 }
